@@ -1,3 +1,6 @@
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -28,4 +31,11 @@ const List<String> cryptoList = [
   'LTC',
 ];
 
-class CoinData {}
+class CoinData {
+  Future<dynamic> getData() async {
+    print('hi');
+    http.Response response = await http.get('https://blockchain.info/ticker');
+    String data = response.body;
+    return jsonDecode(data);
+  }
+}
